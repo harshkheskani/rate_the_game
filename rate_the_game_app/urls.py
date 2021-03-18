@@ -10,4 +10,6 @@ from rate_the_game_app import views
 
 app_name = 'rate_the_game_app'
 
-urlpatterns = []
+urlpatterns = [
+        path('register/', views.register, name='register'),
+        ]
