@@ -15,5 +15,11 @@
         <!--Insert page specific content-->
         {% block body_block %}
         {% endblock %}
+		
+		<div>
+			<ul>
+				<li><a href="{% url 'rate_the_game_app:register' %}">Sign Up</a></li>
+			</ul>
+		</div>
     </body>
 </html>
