@@ -106,3 +106,31 @@ def user_logout(request):
     #since we know user is logged in, we can log them out.
     logout(request)
     return redirect(reverse('rate_the_game_app:index'))
+    
+def show_category(request, category_name_slug):
+    context_dict = {}
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        
+        games = Game.objects.filter(category=category)
+        
+        context_dict['games'] = games
+        context_dict['category'] = category
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['games'] = None
+        
+    return render(request, 'rate_the_game_app/category.html', context=context_dict)
+
+def show_game(request, game_name_slug):
+    context_dict = {}
+    try:
+        Game = Game.objects.get(slug=game_name_slug)
+        
+        games = Game.objects.filter(game=game)
+        
+        context_dict['games'] = games
+    except Game.DoesNotExist:
+        context_dict['games'] = None
+        
+    return render(request, 'rate_the_game_app/game.html', context=context_dict)
