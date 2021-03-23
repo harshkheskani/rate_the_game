@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 # Create your views here.
+def my_account(request):
+    return render(request, 'rate_the_game_app/my_account.html')
+
 def register(request):
     #boolean to tell template whether the registration worked
     #set false initially, change to true when successful
@@ -80,7 +83,7 @@ def user_login(request):
             if user.is_active:
                 #if account is valid and active, log in and send to homepage
                 login(request, user)
-                return redirect(reverse('rate_the_game_app:index'))
+                return redirect(reverse('rate_the_game_app:my_account'))
             else:
                 #inactive account - no log in!
                 return HttpResponse("Your Rate>The>Game account is disabled.")
