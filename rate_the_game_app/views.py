@@ -6,7 +6,9 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-# Create your views here.
+def index(request):
+    return render(request, 'rate_the_game_app/index.html')
+
 def my_account(request):
     return render(request, 'rate_the_game_app/my_account.html')
 
