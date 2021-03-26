@@ -9,8 +9,14 @@ from django.urls import reverse
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
 
+@login_required
 def my_account(request):
     return render(request, 'rate_the_game_app/my_account.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('rate_the_game_app:index'))
 
 def register(request):
     #boolean to tell template whether the registration worked

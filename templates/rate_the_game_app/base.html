@@ -25,12 +25,21 @@
           <ul class="navbar-nav mr-auto">
           </ul>
           <ul class="nav navbar-nav navbar-right">
+			{% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >Logout
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-dark mr-1  btn-lg active" aria-label="Left Align">My Account
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+			{% else %}
             <button type="button" class="btn btn-primary mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >Login
                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
             </button>
             <button type="button" class="btn btn-dark mr-1  btn-lg active" aria-label="Left Align">Sign Up
                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
             </button>
+			{% endif %}
           </ul>
         </div>
       </nav>
