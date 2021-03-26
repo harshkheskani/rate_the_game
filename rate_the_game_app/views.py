@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from rate_the_game_app.models import Category, Game
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
@@ -117,6 +118,14 @@ def user_logout(request):
     #since we know user is logged in, we can log them out.
     logout(request)
     return redirect(reverse('rate_the_game_app:index'))
+    
+#list of categories page
+def show_list(request):
+    #refrence sent to html file to produce page with relevant information
+    context_dict = {}
+    category_list = Category.objects.all()
+    context_dict['categories'] = category_list    
+    return render(request, 'rate_the_game_app/list.html', context=context_dict)
     
 def show_category(request, category_name_slug):
     #refrence sent to html file to produce page with relevant information

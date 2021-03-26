@@ -1,0 +1,19 @@
+{% extends 'rate_the_game_app/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Category
+{% endblock %}
+
+{% block body_block %}
+	<h1>Game Categories</h1>
+	{% if categories %}
+		<ul>
+			{% for category in categories %}
+			<li><a href="rate_the_game_app/{{ category.slug }}/">{{ category.name }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+			<strong>No categories in system.</strong>
+	{% endif %}
+{% endblock %}
