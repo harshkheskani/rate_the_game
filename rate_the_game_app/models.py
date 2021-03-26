@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     
     def __str__(self):
-        return self.username
+        return self.user.username
 
 class Category(models.Model):
     NAME_MAX_LENGTH = 128

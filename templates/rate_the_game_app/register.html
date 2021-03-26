@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Sign Up for Rate The Game!</h1>
+<h1>Sign Up for Rate>The>Game!</h1>
 {% if registered %}
-Rango says: <strong>thank you for registering!</strong>
-<a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
+<strong>thank you for registering for Rate>The>Game!</strong>
+<a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
 {% else %}
 <strong>register here!</strong><br />
 <form id="user_form" method="post" action="{% url 'rate_the_game_app:register' %}" 

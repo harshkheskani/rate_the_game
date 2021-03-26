@@ -1,26 +1,118 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 {% load staticfiles %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block title_block %}
+    <title>Rate > The > Game</title>
+    {% endblock %}
+  </head>
+ 
+  <body>
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark navbar-fixed-top">
+        <a class="navbar-brand" href="#">
+            R > T > G <!--Add logo-->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+			{% if user.is_authenticated %}
+			<a href="{% url 'rate_the_game_app:logout' %}">
+            <button type="button" class="btn btn-primary mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >Logout
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+			</a>
+			<a href="{% url 'rate_the_game_app:my_account' %}">
+            <button type="button" class="btn btn-dark mr-1  btn-lg active" aria-label="Left Align">My Account
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+			</a>
+			{% else %}
+			<a href="{% url 'rate_the_game_app:login' %}">
+            <button type="button" class="btn btn-primary mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >Login
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+			</a>
+			<a href="{% url 'rate_the_game_app:register' %}">
+            <button type="button" class="btn btn-dark mr-1  btn-lg active" aria-label="Left Align">Sign Up
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+			</a>
+			{% endif %}
+          </ul>
+        </div>
+      </nav>
+    <!--End NavBar-->  
+      <!--Background color-->
+      <p class="bg-secondary text-white">Secondary background color.</p>
+      {% block body_block %}
+      {% endblock %}
 
-<html>
-    <head lang ="en">
-        <meta charset="UTF-8">
-        <title>
-            Rate>The>Game
-            {% block title_block %}
-                <!--Name of the page-->
-            {% endblock %}
-        </title>
-    </head>
-    <body>
-        <!--Insert page specific content-->
-        {% block body_block %}
-        {% endblock %}
-		
-		<div>
-			<ul>
-				<li><a href="{% url 'rate_the_game_app:register' %}">Sign Up</a></li>
-				<li><a href="{% url 'rate_the_game_app:login' %}">Login</a></li>
-			</ul>
-		</div>
-    </body>
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            
+            <h5 class="text-uppercase" style="text-align:left;">Team 8E </h5> 
+            <p style="text-align:left;">
+            LB08 Group C. <br>
+            © 2021 Copyright. <br>
+            Privacy - Terms.
+            </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0"></h5>
+        
+                <ul class="list-unstyled">
+                  <li></li>
+                    <a href="#!" class="text-dark"></a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-dark"></a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-dark"></a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-dark"></a>
+                  </li>
+                </ul>
+              </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <button type="button" class="btn btn-dark btn-lg">   Contact Us   </button>
+              </div>
+        </div>
+        <!--Grid row-->
+        </div>
+
+    
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        Team Members: Harvey Russell (2461525R) / Ricky Arthurs (2465714A) / Harsh Kheskani (24824581K)
+        </div>
+        <!-- Copyright -->
+        </footer>
+    <!--End Footer-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
 </html>
+

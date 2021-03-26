@@ -1,0 +1,14 @@
+{% extends 'rate_the_game_app/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	My Account
+{% endblock %}
+
+{% block body_block %}
+<h1>My Rate>The>Game Account</h1>
+<div>
+	Username: {{ user.username }}<br>
+	<img src="{{ user.UserProfile.picture.url }}" alt="profile pic" />
+</div>
+{% endblock %}
