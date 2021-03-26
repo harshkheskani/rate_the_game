@@ -119,6 +119,7 @@ def user_logout(request):
     return redirect(reverse('rate_the_game_app:index'))
     
 def show_category(request, category_name_slug):
+    #refrence sent to html file to produce page with relevant information
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -134,6 +135,7 @@ def show_category(request, category_name_slug):
     return render(request, 'rate_the_game_app/category.html', context=context_dict)
 
 def show_game(request, game_name_slug):
+    #refrence sent to html file to produce page with relevant information
     context_dict = {}
     try:
         Game = Game.objects.get(slug=game_name_slug)
