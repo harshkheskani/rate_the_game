@@ -10,6 +10,9 @@ from rate_the_game_app.models import Category, Game
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
 
+def contact(request):
+    return render(request, 'rate_the_game_app/contact.html')
+
 @login_required
 def my_account(request):
     return render(request, 'rate_the_game_app/my_account.html')

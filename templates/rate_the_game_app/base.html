@@ -16,7 +16,8 @@
     <!--NavBar-->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark navbar-fixed-top">
         <a class="navbar-brand" href="#">
-			<img src="{% static 'images/RTGlogo1.png' %}" alt="R > T > G" height=50/>
+        <a href="{% url 'rate_the_game_app:index_page' %}">
+			<img src="{% static 'images/RTGlogo1.png' %}" alt="R > T > G" height=50/></a>
             <!--Add logo-->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,9 +93,14 @@
                   </li>
                 </ul>
               </div>
+                
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <button type="button" class="btn btn-dark btn-lg">   Contact Us   </button>
-              </div>
+              <a href={% url 'rate_the_game_app:contact' %}> 
+              <button type="button" class="btn btn-dark btn-lg">Contact Us</button>
+              </a>
+            </div>
+          
+
         </div>
         <!--Grid row-->
         </div>
