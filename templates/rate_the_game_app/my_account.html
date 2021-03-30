@@ -7,8 +7,11 @@
 
 {% block body_block %}
 <h1>My Rate>The>Game Account</h1>
-<div>
-	Username: {{ user.username }}<br>
-	<img src="{{ user.UserProfile.picture.url }}" alt="profile pic" />
+<p class="font-weight-bold">Username: {{ user.username }}</p>
+<div style="height: 200px">
+	<img src="{{ user.profile.picture.url }}" alt="profile pic" class="img-thumbnail img-fluid mh-100" />
 </div>
+
+<h2>My Reviews</h2>
+.................
 {% endblock %}

@@ -14,11 +14,6 @@ def index(request):
 def my_account(request):
     return render(request, 'rate_the_game_app/my_account.html')
 
-@login_required
-def user_logout(request):
-    logout(request)
-    return redirect(reverse('rate_the_game_app:index'))
-
 def register(request):
     #boolean to tell template whether the registration worked
     #set false initially, change to true when successful
@@ -106,10 +101,6 @@ def user_login(request):
     else:
         #no context vars to pass
         return render(request, 'rate_the_game_app/login.html')
-
-"""@login_required    
-def restricted(request):
-    return render(request, 'rango/restricted.html')"""
 
 
 #User login_required() to ensure only those logged in can access
