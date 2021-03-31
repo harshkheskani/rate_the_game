@@ -6,12 +6,21 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>My Rate>The>Game Account</h1>
-<p class="font-weight-bold">Username: {{ user.username }}</p>
-<div style="height: 200px">
-	<img src="{{ user.profile.picture.url }}" alt="profile pic" class="img-thumbnail img-fluid mh-100" />
+<h1 style="text-align:center;">My Rate>The>Game Account</h1>
+<br />
+<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 30px; margin-bottom: 50px; box-shadow: 5px 10px;">
+	<div class="row">
+		<div class="col-sm">
+			<p class="font-weight-bold" style="font-size:150%;">Username: {{ user.username }}</p>
+			<div style="height: 200px;">
+				<img src="{{ user.profile.picture.url }}" alt="profile pic" class="img-thumbnail img-fluid mh-100" />
+			</div>
+		</div>
+		
+		<div class="col-sm">
+			<h2>My Reviews</h2>
+			.................
+		</div>
+	</div>
 </div>
-
-<h2>My Reviews</h2>
-.................
 {% endblock %}

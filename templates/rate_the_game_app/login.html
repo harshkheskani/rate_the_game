@@ -6,13 +6,18 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Login to Rate>The>Game</h1>
-<form id="login_form" method="post" action="{% url 'rate_the_game_app:login' %}">
+<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
+<h1 style="text-align:center;">Login to Rate>The>Game</h1>
+<form id="login_form" method="post" action="{% url 'rate_the_game_app:login' %}" style="text-align:center;">
 	{% csrf_token %}
-	Username: <input type="text" name="username" value="" size="50" />
+	Username: <input class="rounded-pill" type="text" name="username" value="" size="50" />
 	<br />
-	Password: <input type="password" name="password" value="" size="50" />
 	<br />
-	<input type="submit" value="submit" />
+	Password: <input class="rounded-pill" type="password" name="password" value="" size="50" />
+	<br />
+	<br />
+	<input class="rounded-pill" type="submit" value="Submit" style="background-color:#343a40; color:white;"/>
 </form>
+</div>
+
 {% endblock %}

@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Sign Up for Rate>The>Game!</h1>
+<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
+<h1 style="text-align:center;">Sign Up for Rate>The>Game!</h1>
+<br />
 {% if registered %}
 <strong>thank you for registering for Rate>The>Game!</strong>
 <a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
 {% else %}
-<strong>register here!</strong><br />
 <form id="user_form" method="post" action="{% url 'rate_the_game_app:register' %}" 
 	enctype="multipart/form-data">
 	
@@ -21,7 +22,8 @@
 	{{ user_form.as_p }}
 	{{ profile_form.as_p }}
 	
-	<input type="submit" name="submit" value="Register" />
+	<input class="rounded-pill"  type="submit" name="submit" value="Register" style="background-color:#343a40; color:white;" />
 </form>
+</div>
 {% endif %}
 {% endblock %}
