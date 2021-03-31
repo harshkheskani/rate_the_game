@@ -8,6 +8,10 @@
 {% block body_block %}
 <div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
 <h1 style="text-align:center;">Login to Rate>The>Game</h1>
+{% if user.is_authenticated %}
+<strong>You are already logged in</strong>
+<a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
+{% else %}
 <form id="login_form" method="post" action="{% url 'rate_the_game_app:login' %}" style="text-align:center;">
 	{% csrf_token %}
 	Username: <input class="rounded-pill" type="text" name="username" value="" size="50" />
@@ -18,6 +22,8 @@
 	<br />
 	<input class="rounded-pill" type="submit" value="Submit" style="background-color:#343a40; color:white;"/>
 </form>
+{% endif %}
 </div>
+
 
 {% endblock %}
