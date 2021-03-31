@@ -54,13 +54,30 @@ form.example::after {
 }
 
 </style> 
+<div class="col text-center">
 <img src="{% static 'images/RTGlogo1.png' %}" alt="R > T > G" height=200 class="width:50%" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+</div>
 <!-- The form -->
+<div class="col text-center">
 <form class="example" action="action_page.php" style="margin:auto;max-width:500px">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
+</div>
+<div class="col text-center">
+<a href="{% url 'rate_the_game_app:login' %}">
+  <button type="button" class="btn btn-primary mr-1  btn-lg active text-center" aria-pressed="true" aria-label="Left Align" >
+    Add a game
+      <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+  </button>
+</a>
+<a href="{% url 'rate_the_game_app:register' %}">
+  <button type="button" class="btn btn-dark mr-1  btn-lg active" aria-label="Left Align">
+    Browse by categories
+      <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+  </button>
+</a>
+</div>
 {% endblock %}
