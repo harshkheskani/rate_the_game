@@ -29,7 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#Email-sending  #
+DEFAULT_FROM_EMAIL = 'will@learndjango.com'
+EMAIL_BACKEND = 'django.core.lmail.backends.console.EmailBackend' 
 # Application definition
 
 INSTALLED_APPS = [

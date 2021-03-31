@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rate_the_game_app.forms import UserForm, UserProfileForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from rate_the_game_app.models import Category, Game
+from django.core.mail import send_mail, BadHeaderError
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
@@ -150,3 +151,4 @@ def show_game(request, game_name_slug):
         context_dict['games'] = None
         
     return render(request, 'rate_the_game_app/game.html', context=context_dict)
+
