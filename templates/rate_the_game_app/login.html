@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
+<div class="bg-secondary rounded text-center" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
 <h1 style="text-align:center;">Login to Rate>The>Game</h1>
 {% if user.is_authenticated %}
 <strong>You are already logged in</strong>
@@ -22,6 +22,14 @@
 	<br />
 	<input class="rounded-pill" type="submit" value="Submit" style="background-color:#343a40; color:white;"/>
 </form>
+
+<br />
+
+<a href="{% url 'rate_the_game_app:register' %}">
+<button type="button" class="btn btn-dark mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >If you don't have an account click here to Sign Up
+	<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+</a>
 {% endif %}
 </div>
 
