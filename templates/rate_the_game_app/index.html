@@ -53,20 +53,31 @@ form.example::after {
   display: table;
 }
 
+.center {
+margin: auto;
+width: 60%;
+padding: 10px;
+}
+.fit {
+  max-width: 99%;
+  max-height: 99%;
+}
+
+
 </style> 
-<div class="col text-center" style="padding:50px;">
-<img src="{% static 'images/RTGlogo2.png' %}" alt="R > T > G" height=100 />
+<div class="center" style="padding:50px;">
+<img src="{% static 'images/RTGlogo2.png' %}" class = "fit" alt="R > T > G" height=100 />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </div>
 <!-- The form -->
-<div class="col text-center" style="padding:50px;">
-<form class="example" action="action_page.php" style="margin:auto;max-width:500px">
+<div class="center" style="padding:50px;">
+<form class="example" action="action_page.php" style="margin:auto; max-width:650px">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 </div>
-<div class="col text-center" style="padding-top:5px; padding-bottom:250px;">
+<div class="col text-center" style="padding: 50px">
 <a href="{% url 'rate_the_game_app:login' %}">
   <button type="button" class="btn btn-primary mr-1  btn-lg active text-center" aria-pressed="true" aria-label="Left Align" >
     Add a game
