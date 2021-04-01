@@ -7,5 +7,24 @@
 
 {% block body_block %}
 	{{ game.title }}
-	<!--will need to implement reviews and game image etc-->
+	{% if game %}
+	<h1>{{ game.name }}</h1>
+		<h2>Game reviews</h2>
+		{% if reviews %}
+		<ul>
+			{% for review in reviews %}
+			<li>Username: {{ review.user }}</li>
+			<li>Score given: {{ review.score }}/5</li>
+			<li>Comment: {{ review.comment }}</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<strong>No reviews have been made for this game.</strong>
+		{% endif %}
+		{% if user.is_authenticated %}
+				<!-- add game page link -->
+		{% else %}
+		You must be logged in to make a review.
+		{% endif %}
+	{% endif %}
 {% endblock %}

@@ -40,3 +40,16 @@ class Game(models.Model):
     
     def __str__(self):
         return self.title
+#Review data structure
+class Review(models.Model):
+    REVIEW_MAX_LENGTH = 2000
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    score = models.IntegerField()
+    comment = models.CharField(max_length=REVIEW_MAX_LENGTH)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    
+    class Meta:
+        verbose_name_plural = 'Reviews'
+    
+    def __str__(self):
+        return self.game + self.user

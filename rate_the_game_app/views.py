@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from rate_the_game_app.models import Category, Game
+from rate_the_game_app.models import Category, Game, Review
 from django.core.mail import send_mail, BadHeaderError
 
 def index(request):
@@ -142,13 +142,15 @@ def show_game(request, game_name_slug):
     #refrence sent to html file to produce page with relevant information
     context_dict = {}
     try:
-        Game = Game.objects.get(slug=game_name_slug)
+        game = Game.objects.get(slug=game_name_slug)
         
-        games = Game.objects.filter(game=game)
+        reviews = Review.objects.filter(game=game)
         
-        context_dict['games'] = games
+        context_dict['game'] = games
+        context_dict['reviews'] = reviews
     except Game.DoesNotExist:
-        context_dict['games'] = None
+        context_dict['game'] = None
+        context_dict['reviews'] = None
         
     return render(request, 'rate_the_game_app/game.html', context=context_dict)
 
