@@ -5,7 +5,7 @@ Created on Thu Mar 18 15:37:29 2021
 @author: Harvey
 """
 from django import forms
-from rate_the_game_app.models import UserProfile
+from rate_the_game_app.models import UserProfile, Game
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
@@ -39,3 +39,9 @@ class ContactForm(forms.Form):
     forcefield = forms.CharField(
         required=False, widget=forms.HiddenInput, label="Leave empty", validators=[should_be_empty])
     
+class GameForm(forms.ModelForm):
+    title = forms.CharField(max_length=Game.TITLE_MAX_LENGTH, help_text="Please enter the name of the game.")
+    
+    class Meta:
+        model = Game
+        exclude = ('category',)

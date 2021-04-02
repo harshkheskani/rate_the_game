@@ -17,4 +17,7 @@
 		{% else %}
 			<strong>No games currently in this category.</strong>
 		{% endif %}
+		{% if user.is_authenticated %}
+				<a href="{% url 'rate_the_game_app:add_game' category.slug %}">Add Game</a> <br />
+		{% endif %}
 {% endblock %}

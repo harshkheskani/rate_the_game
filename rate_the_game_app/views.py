@@ -190,3 +190,29 @@ def show_game(request, game_name_slug):
         
     return render(request, 'rate_the_game_app/game.html', context=context_dict)
 
+@login_required   
+def add_game(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except:
+        category = None
+    
+    if category is None:
+        return redirect('/rate_the_game_app/')
+        
+    form = PageForm()
+    
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        
+        if form.is_valid():
+            if category:
+                game = form.save(commit=False)
+                game.category = category
+                game.save()
+                
+                return redirect(reverse('rate_the_game_app:show_category', kwargs={'category_name_slug': category_name_slug}))
+            else:
+                print(form.errors)
+    context_dict = {'form':form, 'category':category}
+    return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/add_game/', context=context_dict)
