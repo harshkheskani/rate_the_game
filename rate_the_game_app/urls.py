@@ -20,6 +20,5 @@ urlpatterns = [
         path('category/<slug:category_name_slug>/<slug:game_name_slug>', views.show_game, name='show_game'),
         path('logout/', views.user_logout, name='logout'),
         path('my_account/', views.my_account, name='my_account'),
-        path('contact/', views.contact, name='contact'),
-    
+        path('contact/', views.contact_form, name='contact'),
         ]

@@ -7,12 +7,48 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from rate_the_game_app.models import Category, Game, Review
 from django.core.mail import send_mail, BadHeaderError
+from .forms import ContactForm
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
 
-def contact(request):
-    return render(request, 'rate_the_game_app/contact.html')
+# def contact(request):
+#     if request.method == "POST":
+#         form = contactForm(request.POST)
+#         if form.is_valid():
+#             subject = "Website Inquiry"
+#             body = {
+#                 'first_name': form.cleaned_data['first_name'],
+#                 'last_name': form.cleaned_data['last_name'],
+#                 'email': form.cleaned_data['email_address'],
+#                 'message': form.cleaned_data['message'],
+#             }
+#             message = "\n".join(body.values())
+            
+#             try:
+#                 send_mail(subject,message,'admin@example,com',['admin@example.com'])
+#             except BadHeaderError:
+#                 return HttpResponse('Invalid header found.') 
+#             return redirect ("rate_the_game_app:index") 
+
+#     form = contactForm()
+#     return render(request, "rate_the_game_app/contact.html", {'form:':form})   
+def contact_form(request):
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = f'Message from {form.cleaned_data["name"]}'
+            message = form.cleaned_data["message"]
+            sender = form.cleaned_data["email"]
+            recipients = ['hkheskani01@gmail.com']
+            try:
+                send_mail(subject, message, sender, recipients)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found')
+            return HttpResponse('Success...Your email has been sent')
+    return render(request, 'rate_the_game_app/contact.html', {'form': form})
+
 
 @login_required
 def my_account(request):

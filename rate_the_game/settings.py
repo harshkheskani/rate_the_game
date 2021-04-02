@@ -30,8 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 #Email-sending  #
-DEFAULT_FROM_EMAIL = 'will@learndjango.com'
-EMAIL_BACKEND = 'django.core.lmail.backends.console.EmailBackend' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +129,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATICFILES_DIRS = [STATIC_DIR,]
 STATIC_URL = '/static/'
+SENDGRID_API_KEY = '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'
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False

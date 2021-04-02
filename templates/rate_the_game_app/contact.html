@@ -1,11 +1,35 @@
 {% extends 'rate_the_game_app/base.html' %}
 {% block body_block %}
-<h1>Contact Us</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="form-actions">
-      <button type="submit">Send</button>
-    </div>
-</form>
+ <!-- <div style="margin:80px">
+	<h1>Contact</h1>
+	<h4>Contact us directly if you have any questions</h4>
+	<p>
+		Please write your name, email address and a message below if you have any questions.
+		One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+	</p>
+	<form method="post">
+	{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div> -->
+<div class="container ">
+    <h2>Send Me a Message</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.errors }}
+            <label>{{ field.label_tag }}</label>
+            <p>{{ field }}</p>
+        </div>
+        {% endfor %}
+        <button type="reset" class="btn btn-secondary">Reset</button>
+         <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 {% endblock %}
