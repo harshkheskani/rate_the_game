@@ -22,7 +22,7 @@
 			<strong>No reviews have been made for this game.</strong>
 		{% endif %}
 		{% if user.is_authenticated %}
-				<!-- add game page link -->
+				<a href="{% url 'rate_the_game_app:add_review' game.slug %}">Add Review</a> <br />
 		{% else %}
 		You must be logged in to make a review.
 		{% endif %}
