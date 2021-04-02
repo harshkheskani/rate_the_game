@@ -27,6 +27,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
 			{% if user.is_authenticated %}
+			<a style="font-size:20px; color:white; padding:10px; padding-right:30px; font-family:">
+			Hi, {{ user.username }}!
+			</a>
 			<a href="{% url 'rate_the_game_app:logout' %}">
             <button type="button" class="btn btn-primary mr-1  btn-lg active" aria-pressed="true" aria-label="Left Align" >Logout
                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>

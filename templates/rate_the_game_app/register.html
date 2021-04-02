@@ -6,11 +6,15 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
+<div class="bg-secondary rounded" style="margin:auto; margin-top:50px; width:50%; border:3px; padding: 80px; margin-bottom: 50px; box-shadow: 5px 10px;">
 <h1 style="text-align:center;">Sign Up for Rate>The>Game!</h1>
 <br />
 {% if registered %}
 <strong>thank you for registering for Rate>The>Game!</strong>
+<a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
+{% else %}
+{% if user.is_authenticated %}
+<strong>You are already logged in and registered</strong>
 <a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
 {% else %}
 <form id="user_form" method="post" action="{% url 'rate_the_game_app:register' %}" 
@@ -33,6 +37,7 @@
 	</button>
 	</a>
 </div>
+{% endif %}
 {% endif %}
 </div>
 {% endblock %}
