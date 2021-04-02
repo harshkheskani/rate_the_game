@@ -5,7 +5,7 @@ Created on Thu Mar 18 15:37:29 2021
 @author: Harvey
 """
 from django import forms
-from rate_the_game_app.models import UserProfile, Game
+from rate_the_game_app.models import UserProfile, Game, Review, Category
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
@@ -45,3 +45,10 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         exclude = ('category',)
+        
+class ReviewForm(forms.ModelForm):
+    score = forms.IntegerField(help_text="Please enter a score between 1 and 10 for this game.")
+    comment = forms.CharField(max_length=Review.REVIEW_MAX_LENGTH,widget=forms.Textarea,help_text="Please leave a comment tofinish your review")
+    class Meta:
+        model = Review
+        exclude = ('user','game',)

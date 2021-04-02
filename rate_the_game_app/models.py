@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -44,7 +45,7 @@ class Game(models.Model):
 class Review(models.Model):
     REVIEW_MAX_LENGTH = 2000
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    score = models.IntegerField()
+    score = models.IntegerField(validators=[MaxValueValidator(10)])
     comment = models.CharField(max_length=REVIEW_MAX_LENGTH)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     

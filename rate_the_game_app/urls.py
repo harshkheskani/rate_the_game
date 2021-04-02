@@ -19,6 +19,7 @@ urlpatterns = [
         path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
         path('category/<slug:category_name_slug>/add_game/', views.add_game, name='add_game'),
         path('category/<slug:category_name_slug>/<slug:game_name_slug>/', views.show_game, name='show_game'),
+        path('category/<slug:category_name_slug>/<slug:game_name_slug>/add_review/', views.add_review, name='add_review'),
         path('logout/', views.user_logout, name='logout'),
         path('my_account/', views.my_account, name='my_account'),
         path('contact/', views.contact_form, name='contact'),

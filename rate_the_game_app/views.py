@@ -210,9 +210,38 @@ def add_game(request, category_name_slug):
                 game = form.save(commit=False)
                 game.category = category
                 game.save()
-                
+                #redirect back to the category page were this game has been created
                 return redirect(reverse('rate_the_game_app:show_category', kwargs={'category_name_slug': category_name_slug}))
             else:
                 print(form.errors)
     context_dict = {'form':form, 'category':category}
     return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/add_game/', context=context_dict)
+    
+@login_required   
+def add_review(request, game_name_slug, user):
+    try:
+        game = Game.objects.get(slug=game_name_slug)
+        user = UserProfile.objects.get(user=user)
+    except:
+        game = None
+    
+    if game is None:
+        return redirect('/rate_the_game_app/')
+        
+    form = PageForm()
+    
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        
+        if form.is_valid():
+            if category:
+                review = form.save(commit=False)
+                review.user = user
+                review.name = game
+                review.save()
+                #redirect back to the game page were this review has been allocated
+                return redirect(reverse('rate_the_game_app:show_game', kwargs={'game_name_slug': game_name_slug}))
+            else:
+                print(form.errors)
+    context_dict = {'form':form, 'game':game,'user':user}
+    return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/<slug:game_name_slug>/add_review/', context=context_dict)
