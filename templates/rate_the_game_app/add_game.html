@@ -1,12 +1,12 @@
 {% extends 'rate_the_game_app/base.html' %}
 {% load staticfiles %}
-
+<script	type="text/javascript" src="form_verify.js"></script>
 {% block title_block %}
 	Add a Game to our Libary
 {% endblock %}
 
 {% block body_block %}
-	<form id="add_game_form" method="post" action="/rate_the_game_app/category/<slug:category_name_slug>/add_game/">
+	<form id="add_game_form" method="post" onsubmit="return validate_form(this)" action="/rate_the_game_app/category/<slug:category_name_slug>/add_game/">
 	{% csrf_token %}
 	{% csrf_token %}
 	{% for hidden in form.hidden_fields %}
