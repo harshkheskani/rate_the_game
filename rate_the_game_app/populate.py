@@ -111,6 +111,7 @@ def populate():
         q.user=user
         q.score=score
         q.comment=comment
+        return q
     
     def add_cat(name):
         c=Category.objects.get_or_create(name=name)[0]
