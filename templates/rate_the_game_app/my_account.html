@@ -19,7 +19,17 @@
 		
 		<div class="col-sm">
 			<h2>My Reviews</h2>
-			.................
+			{% if reviews %}
+			<ul>
+				{% for review in reviews %}
+				<li>Game: {{ review.game }}</li>
+				<li>Score given: {{ review.score }}/5</li>
+				<li>Comment: {{ review.comment }}</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				<strong>You haven't written any reviews yet!.</strong>
+			{% endif %}
 		</div>
 	</div>
 </div>

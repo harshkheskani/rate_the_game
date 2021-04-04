@@ -52,7 +52,15 @@ def contact_form(request):
 
 @login_required
 def my_account(request):
-    return render(request, 'rate_the_game_app/my_account.html')
+    context_dict = {}
+    try:        
+        reviews = Review.objects.filter(user=request.user.profile)
+        
+        context_dict['reviews'] = reviews
+    except Review.DoesNotExist:
+        context_dict['reviews'] = None
+        
+    return render(request, 'rate_the_game_app/my_account.html', context=context_dict)
 
 def register(request):
     #boolean to tell template whether the registration worked
