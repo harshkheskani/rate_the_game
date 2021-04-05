@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block body_block %}
+
+	<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 25px; padding-right:5px; margin-top:40px; margin-bottom: 50px; box-shadow: 5px 10px;">
 	<h1>Game Categories</h1>
 	{% if categories %}
 			{% for c in categories %}
@@ -15,4 +17,5 @@
 	{% else %}
 			<strong>No categories in system.</strong>
 	{% endif %}
+	</div>
 {% endblock %}

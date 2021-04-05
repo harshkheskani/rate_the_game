@@ -7,6 +7,7 @@
 
 {% block body_block %}
 	{% if category %}
+	<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 25px; padding-right:5px; margin-top:40px; margin-bottom: 50px; box-shadow: 5px 10px;">
 	<h1>{{ category.name }}</h1>
 		{% if games %}
 		<ul>
@@ -21,5 +22,5 @@
 				<a href="{% url 'rate_the_game_app:add_game' category.slug %}">Add Game</a> <br />
 		{% endif %}
 	{% endif %}
-	
+	</div>
 {% endblock %}
