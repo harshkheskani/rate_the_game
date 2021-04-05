@@ -206,7 +206,7 @@ def add_game(request, category_name_slug):
     # "add game" button has been pressed
     try:
         category = Category.objects.get(slug=category_name_slug)
-    except:
+    except Category.DoesNotExist:
         category = None
     # if category does not exist redirect to homepage
     if category is None:
@@ -240,7 +240,7 @@ def add_review(request, game_name_slug, category_name_slug):
     try:
         game = Game.objects.get(slug=game_name_slug)
         user = UserProfile.objects.get(user=request.user.profile)
-    except:
+    except Game.DoesNotExist:
         game = None
     # if game does not exist redirect to homepage
     if game is None:
@@ -262,5 +262,5 @@ def add_review(request, game_name_slug, category_name_slug):
             else:
                 print(form.errors)
     # passing the game and user details into the html for refrence
-    context_dict = {'form':form, 'game':game,'user':user}
+    context_dict = {'form':form, 'game':game}
     return render(request, 'rate_the_game_app/add_review.html', context=context_dict)

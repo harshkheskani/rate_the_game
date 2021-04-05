@@ -28,9 +28,8 @@
 		
 		{% if user.is_authenticated %}
 		<a href="{% url 'rate_the_game_app:add_review' curGame.slug category.slug %}">
-		<button type="button" class="btn btn-primary mr-1  btn-lg active text-center" aria-pressed="true" aria-label="Left Align" >
-			Add a game
-			<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+		<button type="button" class="btn btn-primary mr-1  btn-lg active text-center" style="margin-top:30px;" aria-pressed="true" >
+			Add a Review
 		</button>
 		</a>
 		{% endif %}
