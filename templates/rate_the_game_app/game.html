@@ -7,8 +7,9 @@
 
 {% block body_block %}
 	{% if curGame %}
+	<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 80px; margin-top:50px; margin-bottom: 50px; box-shadow: 5px 10px;">
 	<h1>{{ curGame.title }}</h1>
-		<h2>Game reviews</h2>
+		<h2>Game reviews...</h2> </br>
 		{% if reviews %}
 			<ul>
 				{% for review in reviews %}
@@ -24,5 +25,16 @@
 		{% else %}
 		<strong>No reviews have been made for this game.</strong>
 		{% endif %}
+		
+		{% if user.is_authenticated %}
+		<a href="{% url 'rate_the_game_app:add_review' curGame.slug category.slug %}">
+		<button type="button" class="btn btn-primary mr-1  btn-lg active text-center" aria-pressed="true" aria-label="Left Align" >
+			Add a game
+			<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+		</button>
+		</a>
+		{% endif %}
+		
 	{% endif %}
+	</div>
 {% endblock %}
