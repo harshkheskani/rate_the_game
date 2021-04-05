@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rate_the_game_app.forms import UserForm, UserProfileForm, ContactForm, GameForm
+from rate_the_game_app.forms import UserForm, UserProfileForm, ContactForm, GameForm, ReviewForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
@@ -237,20 +237,20 @@ def add_review(request, game_name_slug, category_name_slug):
 #def add_review(request, game_name_slug, category_name_slug, user):
     try:
         game = Game.objects.get(slug=game_name_slug)
-        user = UserProfile.objects.get(user=user)
+        user = UserProfile.objects.get(user=request.user.profile)
     except:
         game = None
     # if game does not exist redirect to homepage
     if game is None:
         return redirect('/rate_the_game_app/')
         
-    form = PageForm()
+    form = ReviewForm()
     
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        form = ReviewForm(request.POST)
         # get username and game to add to review so that client does not have to enter these fields
         if form.is_valid():
-            if category:
+            if game:
                 review = form.save(commit=False)
                 review.user = user
                 review.name = game
