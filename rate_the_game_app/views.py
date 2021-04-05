@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rate_the_game_app.forms import UserForm, UserProfileForm
+from rate_the_game_app.forms import UserForm, UserProfileForm, ContactForm, GameForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from rate_the_game_app.models import Category, Game, Review, UserProfile
 from django.core.mail import send_mail, BadHeaderError
-from .forms import ContactForm, GameForm
+
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')

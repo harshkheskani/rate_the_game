@@ -17,7 +17,6 @@ def populate():
                 password = "password"
                 )
             q.save()
-        #p = UserProfile.objects.get_or_create(user=q)
         
     
     action = [
@@ -127,24 +126,6 @@ def add_game (cat, title):
     #q.score=score
     #q.comment=comment
     return q
-
-def add_user (username):
-    q = User.objects.get_or_create(username=username)
-    p = UserProfile.objects.get_or_create(user=q)
-    return p
-    """#q = UserProfile.objects.get_or_create(username=username)
-    duplicate = User.objects.filter(username=username)
-    if duplicate.exists():
-        p = UserProfile.objects.get_or_create(user=duplicate)
-        return p
-    q = User.objects.create_user(
-            username = username,
-            password = "password"
-            )
-    q.save()
-    
-    p = UserProfile.objects.get_or_create(user=q)
-    return p"""
  
 
 def add_review (cat, title, user, score, comment):
