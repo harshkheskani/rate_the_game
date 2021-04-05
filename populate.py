@@ -142,7 +142,7 @@ def add_user (username):
  
 
 def add_review (cat, title, user, score, comment):
-    q = Review()
+    q = Review.objects.get_or_create()[0]
     q.game = Game.objects.get(category=cat, title=title)
     q.user = user
     q.score = score

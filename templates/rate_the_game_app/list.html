@@ -8,11 +8,10 @@
 {% block body_block %}
 	<h1>Game Categories</h1>
 	{% if categories %}
-		<ul>
-			{% for category in categories %}
-			<li><a href="{% url 'rate_the_game_app:show_category' category.slug %}">{{ category.name }}</a></li>
+			{% for c in categories %}
+			<li><a href="{% url 'rate_the_game_app:show_category' c.slug %}">{{ c.name }}</a></li>
 			{% endfor %}
-		</ul>
+	
 	{% else %}
 			<strong>No categories in system.</strong>
 	{% endif %}
