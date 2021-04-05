@@ -117,6 +117,6 @@ def populate():
         c=Category.objects.get_or_create(name=name)[0]
         c.save()
         return c
-    if __name__="__main__":
+    if __name__=="__main__":
         print("Starting RTG population")
         populate()
