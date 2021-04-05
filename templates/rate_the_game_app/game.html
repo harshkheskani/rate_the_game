@@ -11,15 +11,19 @@
 	<h1>{{ game.name }}</h1>
 		<h2>Game reviews</h2>
 		{% if reviews %}
-		<ul>
-			{% for review in reviews %}
-			<li>Username: {{ review.user }}</li>
-			<li>Score given: {{ review.score }}/5</li>
-			<li>Comment: {{ review.comment }}</li>
-			{% endfor %}
-		</ul>
+			<ul>
+				{% for review in reviews %}
+				<div class="bg-info rounded" style="margin:auto; margin-bottom:15px; border:3px; padding: 3px; box-shadow: 5px 10px;">
+					<strong>Username: {{ review.user }} | Score given: {{ review.score }}/5</strong><br />
+					Comment:
+					<div class="bg-white rounded" style="margin:auto; border:3px; padding: 3px;">
+						{{ review.comment }}
+					</div>
+				</div>
+				{% endfor %}
+			</ul>
 		{% else %}
-			<strong>No reviews have been made for this game.</strong>
+		<strong>No reviews have been made for this game.</strong>
 		{% endif %}
 		{% if user.is_authenticated %}
 				<a href="{% url 'rate_the_game_app:add_review' game.slug %}">Add Review</a> <br />

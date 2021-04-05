@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from rate_the_game_app.models import Category, Game, Review, UserProfile
 from django.core.mail import send_mail, BadHeaderError
-from .forms import ContactForm
+from .forms import ContactForm, GameForm
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
@@ -208,10 +208,10 @@ def add_game(request, category_name_slug):
     if category is None:
         return redirect('/rate_the_game_app/')
         
-    form = PageForm()
+    form = GameForm()
     
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        form = GameForm(request.POST)
         
         if form.is_valid():
             if category:
@@ -223,10 +223,10 @@ def add_game(request, category_name_slug):
             else:
                 print(form.errors)
     context_dict = {'form':form, 'category':category}
-    return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/add_game/', context=context_dict)
+    return render(request, 'rate_the_game_app/add_game.html', context=context_dict)
     
 @login_required   
-def add_review(request, game_name_slug, user):
+def add_review(request, game_name_slug, category_name_slug, user):
     try:
         game = Game.objects.get(slug=game_name_slug)
         user = UserProfile.objects.get(user=user)
