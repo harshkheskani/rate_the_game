@@ -173,7 +173,7 @@ def show_category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         
         games = Game.objects.filter(category=category)
-        
+        # passing the game and category information to the html
         context_dict['games'] = games
         context_dict['category'] = category
     except Category.DoesNotExist:
@@ -189,8 +189,8 @@ def show_game(request, game_name_slug, category_name_slug):
         game = Game.objects.get(slug=game_name_slug)
         
         reviews = Review.objects.filter(game=game)
-        
-        #context_dict['game'] = game
+        # passing the game and review information to the html
+        context_dict['game'] = game
         context_dict['reviews'] = reviews
     except Game.DoesNotExist:
         context_dict['game'] = None
@@ -200,11 +200,13 @@ def show_game(request, game_name_slug, category_name_slug):
 
 @login_required   
 def add_game(request, category_name_slug):
+    # identify the category that the game belongs to i.e. the category from were the,
+    # "add game" button has been pressed
     try:
         category = Category.objects.get(slug=category_name_slug)
     except:
         category = None
-    
+    # if category does not exist redirect to homepage
     if category is None:
         return redirect('/rate_the_game_app/')
         
@@ -212,7 +214,7 @@ def add_game(request, category_name_slug):
     
     if request.method == 'POST':
         form = PageForm(request.POST)
-        
+        # assign category to the game automatically so this does not have to be included in form
         if form.is_valid():
             if category:
                 game = form.save(commit=False)
@@ -222,17 +224,20 @@ def add_game(request, category_name_slug):
                 return redirect(reverse('rate_the_game_app:show_category', kwargs={'category_name_slug': category_name_slug}))
             else:
                 print(form.errors)
+    # passing the category data to the html for refrence            
     context_dict = {'form':form, 'category':category}
     return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/add_game/', context=context_dict)
     
 @login_required   
 def add_review(request, game_name_slug, user):
+    # identify which user is making the review and which game they're reviewing
+    # then get the relevant information for the user and game
     try:
         game = Game.objects.get(slug=game_name_slug)
         user = UserProfile.objects.get(user=user)
     except:
         game = None
-    
+    # if game does not exist redirect to homepage
     if game is None:
         return redirect('/rate_the_game_app/')
         
@@ -240,7 +245,7 @@ def add_review(request, game_name_slug, user):
     
     if request.method == 'POST':
         form = PageForm(request.POST)
-        
+        # get username and game to add to review so that client does not have to enter these fields
         if form.is_valid():
             if category:
                 review = form.save(commit=False)
@@ -251,5 +256,6 @@ def add_review(request, game_name_slug, user):
                 return redirect(reverse('rate_the_game_app:show_game', kwargs={'game_name_slug': game_name_slug}))
             else:
                 print(form.errors)
+    # passing the game and user details into the html for refrence
     context_dict = {'form':form, 'game':game,'user':user}
     return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/<slug:game_name_slug>/add_review/', context=context_dict)
