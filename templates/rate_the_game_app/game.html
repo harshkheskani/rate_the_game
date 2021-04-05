@@ -6,9 +6,8 @@
 {% endblock %}
 
 {% block body_block %}
-	{{ game.title }}
-	{% if game %}
-	<h1>{{ game.name }}</h1>
+	{% if curGame %}
+	<h1>{{ curGame.title }}</h1>
 		<h2>Game reviews</h2>
 		{% if reviews %}
 			<ul>
@@ -24,11 +23,6 @@
 			</ul>
 		{% else %}
 		<strong>No reviews have been made for this game.</strong>
-		{% endif %}
-		{% if user.is_authenticated %}
-				<a href="{% url 'rate_the_game_app:add_review' game.slug %}">Add Review</a> <br />
-		{% else %}
-		You must be logged in to make a review.
 		{% endif %}
 	{% endif %}
 {% endblock %}

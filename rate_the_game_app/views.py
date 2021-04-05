@@ -189,8 +189,9 @@ def show_game(request, game_name_slug, category_name_slug):
         game = Game.objects.get(slug=game_name_slug)
         
         reviews = Review.objects.filter(game=game)
+        
         # passing the game and review information to the html
-        context_dict['game'] = game
+        context_dict['curGame'] = game
         context_dict['reviews'] = reviews
     except Game.DoesNotExist:
         context_dict['game'] = None
