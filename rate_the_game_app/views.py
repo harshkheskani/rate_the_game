@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from rate_the_game_app.models import Category, Game, Review
+from rate_the_game_app.models import Category, Game, Review, UserProfile
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm
 
@@ -182,7 +182,7 @@ def show_category(request, category_name_slug):
         
     return render(request, 'rate_the_game_app/category.html', context=context_dict)
 
-def show_game(request, game_name_slug):
+def show_game(request, game_name_slug, category_name_slug):
     #refrence sent to html file to produce page with relevant information
     context_dict = {}
     try:
@@ -190,7 +190,7 @@ def show_game(request, game_name_slug):
         
         reviews = Review.objects.filter(game=game)
         
-        context_dict['game'] = games
+        #context_dict['game'] = game
         context_dict['reviews'] = reviews
     except Game.DoesNotExist:
         context_dict['game'] = None

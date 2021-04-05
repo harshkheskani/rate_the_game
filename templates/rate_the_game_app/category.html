@@ -11,7 +11,7 @@
 		{% if games %}
 		<ul>
 			{% for game in games %}
-			<li><a href="rate_the_game_app/{{ category.slug }}/{{ game.slug }}/">{{ game.title }}</a></li>
+			<li><a href="{% url 'rate_the_game_app:show_game' category.slug game.slug %}">{{ game.title }}</a></li>
 			{% endfor %}
 		</ul>
 		{% else %}
