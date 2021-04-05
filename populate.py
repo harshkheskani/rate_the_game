@@ -10,15 +10,18 @@ def populate():
     users = ['harvey2001', 'ricky2051', 'harsh2801', 'UofG2019', 'WAD2510']
     
     for username in users:
-        q = User.objects.create_user(
-        username = username,
-        password = "password"
-        )
-        q.save()
+        duplicate = User.objects.filter(username=username)
+        if not (duplicate.exists()):
+            q = User.objects.create_user(
+                username = username,
+                password = "password"
+                )
+            q.save()
+        #p = UserProfile.objects.get_or_create(user=q)
         
     
     action = [
-        {'title':'Tekken 3', 'user':'harvey2001', 'score':7.5, 'comment':'A lot of fun would reccommend'},
+        {'title':'Tekken 3', 'user':'harvey2001', 'score':7, 'comment':'A lot of fun would reccommend'},
         {'title':'Farcry 5', 'user':'ricky2051', 'score':7, 'comment':'Amazing story!'},
         {'title':'Super Mario Galaxy', 'user':'harsh2801', 'score':4, 'comment':'Had a blast while playing!'},
         {'title':'Super Smash Bros Brawl', 'user':'UofG2019', 'score':9, 'comment':'Got super heated when playing with friends'},
@@ -111,8 +114,8 @@ def populate():
         c = add_cat(cat)
         for q in cat_data["games"]:
             add_game(c, q["title"])
-            curUser = add_user(q["user"])
-            add_review(c, q["title"],curUser, q["score"], q["comment"] )
+            #curUser = add_user(q["user"])
+            add_review(c, q["title"],q["user"], q["score"], q["comment"] )
     
     for c in Category.objects.all():
         for q in Game.objects.filter(category=c):
@@ -126,6 +129,9 @@ def add_game (cat, title):
     return q
 
 def add_user (username):
+    q = User.objects.get_or_create(username=username)
+    p = UserProfile.objects.get_or_create(user=q)
+    return p
     """#q = UserProfile.objects.get_or_create(username=username)
     duplicate = User.objects.filter(username=username)
     if duplicate.exists():
@@ -142,9 +148,12 @@ def add_user (username):
  
 
 def add_review (cat, title, user, score, comment):
-    q = Review()
-    q.game = Game.objects.get(category=cat, title=title)
-    q.user = user
+    h = User.objects.filter(username=user)
+    prof = UserProfile.objects.get(user__in=h, )
+    game = Game.objects.get(category=cat, title=title)
+    
+    q = Review.objects.get_or_create(user = prof, game=game)
+
     q.score = score
     q.comment = comment
     return q  
