@@ -152,10 +152,8 @@ def add_review (cat, title, user, score, comment):
     prof = UserProfile.objects.get(user__in=h, )
     game = Game.objects.get(category=cat, title=title)
     
-    q = Review.objects.get_or_create(user = prof, game=game)
+    q = Review.objects.get_or_create(user = prof, game=game, score=score, comment=comment)
 
-    q.score = score
-    q.comment = comment
     return q  
 
 def add_cat(name):
