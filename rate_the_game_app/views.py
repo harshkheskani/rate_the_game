@@ -209,19 +209,17 @@ def add_game(request, category_name_slug):
     except Category.DoesNotExist:
         category = None
     # if category does not exist redirect to homepage
-    if category is None:
+    if category == None:
         return redirect('/rate_the_game_app/')
-        
-    form = GameForm()
-    
+    form = GameForm()    
     if request.method == 'POST':
-        #form = PageForm(request.POST)
-        # assign category to the game automatically so this does not have to be included in form
         form = GameForm(request.POST)
+        # assign category to the game automatically so this does not have to be included in form
         if form.is_valid():
             if category:
                 game = form.save(commit=False)
                 game.category = category
+                game.title = form.cleaned_data['title']
                 game.save()
                 #redirect back to the category page were this game has been created
                 return redirect(reverse('rate_the_game_app:show_category', kwargs={'category_name_slug': category_name_slug}))
@@ -255,7 +253,7 @@ def add_review(request, game_name_slug, category_name_slug):
             if game:
                 review = form.save(commit=False)
                 review.user = user
-                review.name = game
+                review.game = game
                 review.save()
                 #redirect back to the game page were this review has been allocated
                 return redirect(reverse('rate_the_game_app:show_game', kwargs={'game_name_slug': game_name_slug}))
