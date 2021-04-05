@@ -54,4 +54,4 @@ class Review(models.Model):
         verbose_name_plural = 'Reviews'
     
     def __str__(self):
-        return self.game + self.user
+        return '{} {}'.format(self.game,self.user)
