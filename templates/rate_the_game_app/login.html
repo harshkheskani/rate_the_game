@@ -1,6 +1,6 @@
 {% extends 'rate_the_game_app/base.html' %}
 {% load staticfiles %}
-
+<script	type="text/javascript" src="form_verify.js"></script>
 {% block title_block %}
 	Login
 {% endblock %}
@@ -12,7 +12,7 @@
 <strong>You are already logged in</strong>
 <a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
 {% else %}
-<form id="login_form" method="post" action="{% url 'rate_the_game_app:login' %}" style="text-align:center;">
+<form id="login_form" method="post" onsubmit="return validate_form(this)" action="{% url 'rate_the_game_app:login' %}" style="text-align:center;">
 	{% csrf_token %}
 	Username: <input class="rounded-pill" type="text" name="username" value="" size="50" />
 	<br />

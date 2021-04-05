@@ -1,6 +1,6 @@
 {% extends 'rate_the_game_app/base.html' %}
 {% load staticfiles %}
-
+<script	type="text/javascript" src="form_verify.js"></script>
 {% block title_block %}
 	Register
 {% endblock %}
@@ -17,7 +17,7 @@
 <strong>You are already logged in and registered</strong>
 <a href="{% url 'rate_the_game_app:index' %}">Return to the homepage.</a><br />
 {% else %}
-<form id="user_form" method="post" action="{% url 'rate_the_game_app:register' %}" 
+<form id="user_form" method="post" onsubmit="return validate_form(this)" action="{% url 'rate_the_game_app:register' %}" 
 	enctype="multipart/form-data">
 	
 	{% csrf_token %}
