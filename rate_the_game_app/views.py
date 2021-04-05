@@ -213,7 +213,7 @@ def add_game(request, category_name_slug):
     form = GameForm()
     
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        #form = PageForm(request.POST)
         # assign category to the game automatically so this does not have to be included in form
         form = GameForm(request.POST)
         if form.is_valid():
@@ -229,11 +229,12 @@ def add_game(request, category_name_slug):
     context_dict = {'form':form, 'category':category}
     return render(request, 'rate_the_game_app/add_game.html', context=context_dict)
     
-@login_required   
-def add_review(request, game_name_slug, user):
+@login_required
+#TODO maybe need to change params here not sure yet
+def add_review(request, game_name_slug, category_name_slug):
     # identify which user is making the review and which game they're reviewing
     # then get the relevant information for the user and game
-def add_review(request, game_name_slug, category_name_slug, user):
+#def add_review(request, game_name_slug, category_name_slug, user):
     try:
         game = Game.objects.get(slug=game_name_slug)
         user = UserProfile.objects.get(user=user)
@@ -260,4 +261,4 @@ def add_review(request, game_name_slug, category_name_slug, user):
                 print(form.errors)
     # passing the game and user details into the html for refrence
     context_dict = {'form':form, 'game':game,'user':user}
-    return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/<slug:game_name_slug>/add_review/', context=context_dict)
+    return render(request, 'rate_the_game_app/add_review.html', context=context_dict)

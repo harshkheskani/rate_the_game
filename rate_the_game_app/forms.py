@@ -41,6 +41,7 @@ class ContactForm(forms.Form):
     
 class GameForm(forms.ModelForm):
     title = forms.CharField(max_length=Game.TITLE_MAX_LENGTH, help_text="Please enter the name of the game.")
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     # category information is already passed via the view so is not required in the form
     class Meta:
         model = Game
