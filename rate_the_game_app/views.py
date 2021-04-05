@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from rate_the_game_app.models import Category, Game, Review, UserProfile
 from django.core.mail import send_mail, BadHeaderError
-from .forms import ContactForm
+from .forms import ContactForm, GameForm
 
 def index(request):
     return render(request, 'rate_the_game_app/index.html')
@@ -210,11 +210,12 @@ def add_game(request, category_name_slug):
     if category is None:
         return redirect('/rate_the_game_app/')
         
-    form = PageForm()
+    form = GameForm()
     
     if request.method == 'POST':
         form = PageForm(request.POST)
         # assign category to the game automatically so this does not have to be included in form
+        form = GameForm(request.POST)
         if form.is_valid():
             if category:
                 game = form.save(commit=False)
@@ -226,12 +227,13 @@ def add_game(request, category_name_slug):
                 print(form.errors)
     # passing the category data to the html for refrence            
     context_dict = {'form':form, 'category':category}
-    return render(request, '/rate_the_game_app/category/<slug:category_name_slug>/add_game/', context=context_dict)
+    return render(request, 'rate_the_game_app/add_game.html', context=context_dict)
     
 @login_required   
 def add_review(request, game_name_slug, user):
     # identify which user is making the review and which game they're reviewing
     # then get the relevant information for the user and game
+def add_review(request, game_name_slug, category_name_slug, user):
     try:
         game = Game.objects.get(slug=game_name_slug)
         user = UserProfile.objects.get(user=user)

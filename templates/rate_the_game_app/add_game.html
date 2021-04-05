@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 30px; margin-bottom: 50px; margin-top:50px; box-shadow: 5px 10px;">
 	<form id="add_game_form" method="post" onsubmit="return validate_form(this)" action="/rate_the_game_app/category/<slug:category_name_slug>/add_game/">
 	{% csrf_token %}
 	{% csrf_token %}
@@ -17,6 +18,7 @@
 		{{ field.help_text }}
 		{{ field }}
 	{% endfor %}
-	<input type="submit" name="submit" value="Add Game" />
+	<input class="rounded-pill" type="submit" name="submit" value="Add Game" />
 	</form>
+</div>
 {% endblock %}
