@@ -206,7 +206,7 @@ def add_game(request, category_name_slug):
     # "add game" button has been pressed
     try:
         category = Category.objects.get(slug=category_name_slug)
-    except:
+    except Category.DoesNotExist:
         category = None
     # if category does not exist redirect to homepage
     if category == None:
@@ -240,7 +240,7 @@ def add_review(request, game_name_slug, category_name_slug):
         #ignore the wrong way round!
         game = Game.objects.get(slug=category_name_slug)
         #user = UserProfile.objects.get(user=request.user.profile.user)
-    except:
+    except Game.DoesNotExist:
         game = None
     # if game does not exist redirect to homepage
     if game is None:

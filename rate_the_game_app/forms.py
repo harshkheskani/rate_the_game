@@ -49,7 +49,7 @@ class GameForm(forms.ModelForm):
         
 class ReviewForm(forms.ModelForm):
     score = forms.IntegerField(help_text="Please enter a score between 1 and 10 for this game.")
-    comment = forms.CharField(max_length=Review.REVIEW_MAX_LENGTH,widget=forms.Textarea,help_text="Please leave a comment tofinish your review")
+    comment = forms.CharField(max_length=Review.REVIEW_MAX_LENGTH,widget=forms.Textarea,help_text="Please leave a comment to finish your review")
     # username and game title information is already passed via the view so is not required in the form
     class Meta:
         model = Review

@@ -6,17 +6,20 @@
 {% endblock %}
 
 {% block body_block %}
+	<div class="bg-secondary rounded" style="margin:auto; width:50%; border:3px; padding: 25px; padding-right:5px; margin-top:40px; margin-bottom: 50px; box-shadow: 5px 10px;">
 	<form id="add_review_form" method="post" onsubmit="return validate_form(this)" action="/rate_the_game_app/category/{{ category }}/{{ game.slug }}/add_review/">
+	
 	{% csrf_token %}
 	{% csrf_token %}
 	{% for hidden in form.hidden_fields %}
 		{{ hidden }}
-	{% endfor %}
+	{% endfor %}<br />
 	{% for field in form.visible_fields %}
 		{{ field.errors }}
 		{{ field.help_text }}
 		{{ field }}
 	{% endfor %}
-	<input type="submit" name="submit" value="Add Review" />
+	<input class="rounded-pill" type="submit" name="submit" value="Add Review" />
 	</form>
+	</div>
 {% endblock %}
