@@ -57,6 +57,3 @@ class ReviewForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user',None)
         super(ReviewForm, self).__init__(*args, **kwargs)
-#    def clean(self):
-#       print(self.request.user)
-#       pass
