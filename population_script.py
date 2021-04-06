@@ -5,6 +5,10 @@ import django
 django.setup()
 
 from rate_the_game_app.models import Category, Game, Review, UserProfile, User
+#make sure to run these after code changes or pulling the repo onto a new machine so that your system is aware,
+#manage.py makemigrations
+#manage.py migrate
+
 
 def populate():
     users = ['harvey2001', 'ricky2051', 'harsh2801', 'UofG2019', 'WAD2510']
