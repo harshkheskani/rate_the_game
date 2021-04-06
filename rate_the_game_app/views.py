@@ -230,14 +230,16 @@ def add_game(request, category_name_slug):
     return render(request, 'rate_the_game_app/add_game.html', context=context_dict)
     
 @login_required
-#TODO maybe need to change params here not sure yet
 def add_review(request, game_name_slug, category_name_slug):
     # identify which user is making the review and which game they're reviewing
     # then get the relevant information for the user and game
 #def add_review(request, game_name_slug, category_name_slug, user):
+  
     try:
-        game = Game.objects.get(slug=game_name_slug)
-        user = UserProfile.objects.get(user=request.user.profile)
+      
+        #ignore the wrong way round!
+        game = Game.objects.get(slug=category_name_slug)
+        #user = UserProfile.objects.get(user=request.user.profile.user)
     except:
         game = None
     # if game does not exist redirect to homepage
@@ -245,20 +247,23 @@ def add_review(request, game_name_slug, category_name_slug):
         return redirect('/rate_the_game_app/')
         
     form = ReviewForm()
-    
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        form = ReviewForm(request.POST, user=request.user)
         # get username and game to add to review so that client does not have to enter these fields
         if form.is_valid():
             if game:
-                review = form.save(commit=False)
-                review.user = user
+                review = form.save(commit=False)        
+                
+                x = UserProfile.objects.get_or_create(user=request.user)[0]
+                review.user = x
                 review.game = game
+                #maybe need cleaned data function
                 review.save()
                 #redirect back to the game page were this review has been allocated
-                return redirect(reverse('rate_the_game_app:show_game', kwargs={'game_name_slug': game_name_slug}))
+                cat_slug = game.category.slug
+                return redirect(reverse('rate_the_game_app:show_game', kwargs={'game_name_slug':game_name_slug, 'category_name_slug':cat_slug}))
             else:
                 print(form.errors)
     # passing the game and user details into the html for refrence
-    context_dict = {'form':form, 'game':game,'user':user}
+    context_dict = {'form':form, 'game':game,'category':category_name_slug}
     return render(request, 'rate_the_game_app/add_review.html', context=context_dict)

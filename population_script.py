@@ -16,7 +16,10 @@ def populate():
                 username = username,
                 password = "password"
                 )
+            p = UserProfile.objects.create(user=q)
+            
             q.save()
+            p.save()
         
     
     action = [

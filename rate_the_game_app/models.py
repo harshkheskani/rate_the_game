@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     
     #additional attribute for the user model
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    
+
     def __str__(self):
         return self.user.username
 #category data structure  
@@ -46,8 +46,8 @@ class Game(models.Model):
 class Review(models.Model):
     REVIEW_MAX_LENGTH = 2000
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    score = models.IntegerField(validators=[MaxValueValidator(10)])
-    comment = models.CharField(max_length=REVIEW_MAX_LENGTH)
+    score = models.IntegerField(validators=[MaxValueValidator(10)],null=True)
+    comment = models.CharField(max_length=REVIEW_MAX_LENGTH,blank=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     
     class Meta:

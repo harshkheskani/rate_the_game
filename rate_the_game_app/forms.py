@@ -54,3 +54,9 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         exclude = ('user','game',)
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user',None)
+        super(ReviewForm, self).__init__(*args, **kwargs)
+#    def clean(self):
+#       print(self.request.user)
+#       pass
